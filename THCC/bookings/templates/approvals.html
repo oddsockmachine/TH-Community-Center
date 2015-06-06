@@ -11,8 +11,8 @@
 {% block main %}
 <script>
 function approve(yesOrNo, bookingID) {
-    console.log(yesOrNo);
-    console.log(bookingID);
+//     console.log(yesOrNo);
+//     console.log(bookingID);
     var form = document.createElement('form');
     form.setAttribute('method', 'post');
     form.setAttribute('action', '/bookings/approve');
@@ -33,10 +33,9 @@ function approve(yesOrNo, bookingID) {
 </script>
     {% for booking in bookings %}
     <div class="post">
-        <h1><a href="{% url 'booking_detail' pk=booking.pk %}">{{ booking.title }} {{booking.approved}}</a></h1>
+        <h1><a href="{% url 'booking_detail' pk=booking.pk %}">{{ booking.title }} <!--{{booking.approved}}--></a></h1>
         <input class="btn btn-success" type="submit" value="Approve" onclick="approve('yes', '{{booking.id}}')">
         <input class="btn btn-danger" type="submit" value="Reject" onclick="approve('no', '{{booking.id}}')">
-        <button onclick="myFunction()">Click me</button>
 
         <div class="date">
             {{ booking.start_date }}

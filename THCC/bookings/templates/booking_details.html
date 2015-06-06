@@ -1,19 +1,48 @@
 {% extends '../templates/base.html' %}
 {% load i18n %}
 
-{% block meta_title %}{% trans "Tang Hall Community Centre" %}{% endblock %}
-{% block title %}{% trans "Tang Hall Community Centre" %}{% endblock %}
+{% block meta_title %}My bookings{% endblock %}
+{% block title %}Booking detail: {{booking.title}}{% endblock %}
 
 {% block breadcrumb_menu %}
 <li class="active">{% trans "Home.Bookings" %}</li>
 {% endblock %}
 
 {% block main %}
-                <div class="post">
-                    <div class="date">
-                        {{ booking.start_date }}
-                    </div>
-                    <h1><a href="{% url 'booking_detail' pk=booking.pk %}">{{ booking.title }}</a></h1>
-                    <p>{{ booking.desc|linebreaks }}</p>
-                </div>
+
+<!-- Tried to use DELETE but too much hassle getting it to work -->
+<!-- <script>
+function del(bookingID) {
+//     $.ajax({
+//     url: '',
+//     type: 'DELETE',
+//     success: function(result) {
+//         console.log("I eat you")
+//     }
+//});
+    var form = document.createElement('form');
+    form.setAttribute('method', 'DELETE');
+    form.setAttribute('action', '/bookings/booking/{{booking.id}}');
+    form.style.display = 'hidden';
+    var IDField = document.createElement("input");
+    IDField.setAttribute("type", "hidden");
+    IDField.setAttribute("name", "ID");
+    IDField.setAttribute("value", bookingID);
+    form.appendChild(IDField);
+    document.body.appendChild(form);
+    console.log(form);
+    form.submit();
+}
+</script> -->
+
+<div class="post">
+    <div class="date">
+        {{ booking.start_date }}
+    </div>
+    <h1><a href="{% url 'booking_detail' pk=booking.pk %}">{{ booking.title }}</a></h1>
+    <p>{{ booking.desc|linebreaks }}</p>
+<!--     <input class="btn btn-danger" type="submit" value="Delete this booking" onclick="del('{{booking.id}}')"> -->
+    <button class="btn btn-danger" type="submit" value="Delete this booking" onclick="location.href='/bookings/delete/{{booking.id}}'" formmethod="GET">Delete this booking</button>
+
+</div>
 {% endblock main %}

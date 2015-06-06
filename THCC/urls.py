@@ -91,7 +91,7 @@ urlpatterns += patterns('',
                         
     # Reservations 
 #     url(r'^reservations/', include('reservations.urls')),
-    url(r'^mycalendar', mycalendar_view, name='mycalendar'),
+#     url(r'^mycalendar', mycalendar_view, name='mycalendar'),
     url(r'^bookings/', include('bookings.urls')),
 
 )

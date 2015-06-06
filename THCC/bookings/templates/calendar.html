@@ -1,5 +1,6 @@
 {% extends "base_minimal.html" %}
 {% load i18n %}
+{% block meta_title %}{% trans "New Booking" %}{% endblock %}
 
 {% block extra_head %}
 
@@ -178,6 +179,7 @@
     // event creating
     dp.onTimeRangeSelected = function (args) {
         //var name = prompt("name goes here:", "Event");
+        // change into format required by Django
         start = args.start.value.slice(0,10)+" "+args.start.value.slice(11);
         end = args.end.value.slice(0,10)+" "+args.end.value.slice(11);
         console.log(start);

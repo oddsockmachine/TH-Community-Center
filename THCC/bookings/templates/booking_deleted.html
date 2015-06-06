@@ -1,0 +1,19 @@
+{% extends '../templates/base.html' %}
+{% load i18n %}
+
+{% block meta_title %}{% trans "Tang Hall Community Centre" %}{% endblock %}
+{% block title %}{% trans "Tang Hall Community Centre" %}{% endblock %}
+
+{% block breadcrumb_menu %}
+<li class="active">{% trans "Home.Bookings" %}</li>
+{% endblock %}
+
+{% block main %}
+    {% if success %}
+    <p>Your booking has been deleted.</p>
+    {% else %}
+    <p>Sorry, there was an error deleting your booking. It's possible you already deleted it or you may not be logged in as the booking creator. Please return to the booking list.</p>
+    {% endif %}
+<p><a href="{% url 'bookings.views.booking_mine' %}">Back to booking list</a></p>
+<p><a href="/">To the homepage</a></p>
+{% endblock main %}

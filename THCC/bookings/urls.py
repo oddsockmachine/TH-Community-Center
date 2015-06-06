@@ -6,8 +6,9 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
-    url(r'^list$', booking_list, name='booking_list'),
+    url(r'^upcoming$', booking_upcoming, name='booking_upcoming'),
     url(r'^booking/(?P<pk>[0-9]+)$', booking_detail, name='booking_detail'),
+    url(r'^delete/(?P<pk>[0-9]+)$', booking_deleted, name='booking_deleted'),
     url(r'^add$', booking_add, name='booking_add'),
     url(r'^calendar$', booking_calendar, name='booking_calendar'),
     url(r'^submit$', booking_submit, name='booking_submit'),

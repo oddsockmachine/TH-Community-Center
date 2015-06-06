@@ -1,9 +1,10 @@
+from datetime import datetime
 from django.shortcuts import render, get_object_or_404, redirect
 from models import Booking
 from forms import BookingForm
 from json import dumps
 from django.views.decorators.http import require_POST
-from django.contrib.auth.decorators import user_passes_test
+from django.contrib.auth.decorators import user_passes_test, login_required
 from django.views.decorators.csrf import csrf_exempt
 
 
@@ -28,25 +29,29 @@ def booking_approvals(request):
             booking_to_approve.approved = True
             booking_to_approve.save()
             # TODO: Send approval email
-    bookings_needing_approval = Booking.objects.filter(approved=False)
+    bookings_needing_approval = Booking.objects.filter(approved=False).filter(start_date__gte=datetime.now())
     return render(request, "approvals.html", {'bookings': bookings_needing_approval})
 
+@login_required
 def booking_mine(request):     
     bookings_for_user = Booking.objects.filter(user=request.user)
     return render(request, "mine.html", {'bookings': bookings_for_user})
 
 
-def booking_calendar(request):          
-    bookings = Booking.objects.all()
+def booking_calendar(request):
+    """
+    Calendar widget requires booking objects as json. We get all bookings from DB, then convert them to json.
+    This conversion removes several fields from the Booking object, since they cannot be converted to json/aren't required.
+    """
+    bookings = Booking.objects.all()  # Todo: should load only this month's bookings
     bookings_as_dicts = []
     for booking in bookings:
         bookings_as_dicts.append(booking.to_json())
     bookings_json_string = dumps(bookings_as_dicts)
-    #print bookings_json_string
     form = BookingForm()
     return render(request, "calendar.html", {'bookings': bookings_json_string, 'form': form})
 
-
+@login_required
 def booking_submit(request):
     if request.method == "POST":
         form = BookingForm(request.POST)
@@ -59,7 +64,7 @@ def booking_submit(request):
             
             # Verify that this booking will not conflict with any others
             # ie in the same room, with overlapping times
-            # to do this quickly, find all bookings in same room, excluding those with start date after new end date and end date before new start date. This makes sense, I prmoise... 
+            # to do this quickly, find all bookings in same room, excluding those with start date after new end date and end date before new start date. This makes sense, I promise... 
             conflicting_bookings = Booking.objects.filter(room=booking.room).exclude(start_date__gte=booking.end_date).exclude(end_date__lte=booking.start_date)
             print conflicting_bookings
             if len(conflicting_bookings) > 0:
@@ -73,16 +78,23 @@ def booking_submit(request):
     else:
         return redirect('bookings.views.booking_calendar')
 
-
-def booking_list(request):
-    bookings = Booking.objects.all()
-    return render(request, "booking_list.html", {'bookings': bookings})
+# 
+def booking_upcoming(request):
+    bookings = Booking.objects.filter(start_date__gte=datetime.now()).filter(approved=True)
+    return render(request, "booking_upcoming.html", {'bookings': bookings})
 
 def booking_detail(request, pk):
     print "view details..."
     booking = get_object_or_404(Booking, pk=pk)
     return render(request, "booking_details.html", {'booking': booking})
 
+def booking_deleted(request, pk):
+    print "bye bye"
+    booking_to_delete = get_object_or_404(Booking, pk=pk)
+    booking_to_delete.delete()
+    return render(request, "booking_deleted.html", {"success":True})
+
+# no longer used
 def booking_add(request):
     if request.method == "POST":
         form = BookingForm(request.POST)
