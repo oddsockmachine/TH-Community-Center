@@ -10,6 +10,7 @@ prettify add form and disable editing of date fields and posting if incomplete (
 approvals page - allow admins to approve bookings without going into admin interface - Needs prettier template, but logic done
 user sign up - DONE
 /bookings/mine - show all bookings for user, allow them to delete etc - Needs prettier template, but logic done
+bookings/mine needs login check - error at: bookings_for_user = Booking.objects.filter(user=request.user) 
 calendar link should lead to booking tutorial/guide
 see if can show time on vertical and rooms on horizontal axis for more space
 actually send confirmation to user email: https://groups.google.com/forum/#!topic/mezzanine-users/D0OoaALImxo

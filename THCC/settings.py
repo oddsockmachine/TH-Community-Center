@@ -238,7 +238,7 @@ TEMPLATE_DIRS = (os.path.join(PROJECT_ROOT, "templates"),)
 APP_SHORTNAME = "THCC"
 APP_URL = "THCC"
 SITE_TITLE = "Tang Hall Community Centre"
-SITE_TAGLINE = "Tangy and saucy"
+SITE_TAGLINE = "Tangy!"
 ACCOUNTS_ENABLED = True
 ################
 # APPLICATIONS #
