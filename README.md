@@ -12,12 +12,14 @@ Current features:
 
 - Prevents overlapping bookings
 
-
-Upcoming features:
+- User login and page to see/delete all of your bookings
 
 - Booking confirmations (page for admins)
 
-- User login and page to see all of your bookings
+
+Upcoming features:
+
+- Edit bookings
 
 - Block bookings
 
