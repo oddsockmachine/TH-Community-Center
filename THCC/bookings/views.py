@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import datetime, timedelta
 from django.shortcuts import render, get_object_or_404, redirect
 from models import Booking
 from forms import BookingForm
@@ -37,7 +37,11 @@ def booking_mine(request):
     bookings_for_user = Booking.objects.filter(user=request.user)
     return render(request, "mine.html", {'bookings': bookings_for_user})
 
+def howto(request):     
+    bookings_for_user = Booking.objects.filter(user=request.user)
+    return render(request, "howto.html")
 
+@login_required
 def booking_calendar(request):
     """
     Calendar widget requires booking objects as json. We get all bookings from DB, then convert them to json.
@@ -72,6 +76,14 @@ def booking_submit(request):
                 return render(request, "booking_submitted.html", {"success":False})    
             print "no conflicts"
             booking.save()
+            if request.POST['repeat'] == "10times":
+                print "block booking"
+                for i in range(1,10):
+                    form = BookingForm(request.POST)
+                    booking = form.save(commit=False)
+                    booking.user = request.user
+                    booking.start_date += timedelta(days=7*i)
+                    booking.save()
             print booking
             return render(request, "booking_submitted.html", {"success":True})
         return render(request, "booking_submitted.html", {"success":False})
@@ -90,20 +102,13 @@ def booking_detail(request, pk):
 
 def booking_deleted(request, pk):
     print "bye bye"
-    booking_to_delete = get_object_or_404(Booking, pk=pk)
-    booking_to_delete.delete()
-    return render(request, "booking_deleted.html", {"success":True})
-
-# no longer used
-def booking_add(request):
-    if request.method == "POST":
-        form = BookingForm(request.POST)
-        if form.is_valid():
-            booking = form.save(commit=False)
-            booking.user = request.user
-            booking.save()
-            return render(request, "booking_list.html", {'bookings': Booking.objects.all()})
-            #return redirect('blog.views.post_detail', pk=post.pk)
+    # booking_to_delete = get_object_or_404(Booking, pk=pk)
+    try:
+        booking_to_delete = Booking.objects.get(pk=pk)
+    except Booking.DoesNotExist:
+        return render(request, "booking_deleted.html", {"success":False})
+    if booking_to_delete.user == request.user:
+        booking_to_delete.delete()
+        return render(request, "booking_deleted.html", {"success":True})
     else:
-        form = BookingForm()
-    return render(request, 'booking_edit.html', {'form': form})
+        return render(request, "booking_deleted.html", {"success":False})

@@ -1,0 +1,28 @@
+{% extends '../templates/base.html' %}
+{% load i18n %}
+
+{% block meta_title %}{% trans "How to book at Tang Hall" %}{% endblock %}
+{% block title %}{% trans "How to book at Tang Hall" %}{% endblock %}
+
+{% block breadcrumb_menu %}
+<li class="active">{% trans "Home.Bookings" %}</li>
+{% endblock %}
+
+{% block main %}
+<h2>How to book online</h2>
+    <p>Go to the <a href="/bookings/calendar">calendar</a>.</p>
+    <p>The rooms available for booking are shown along the left edge of the calendar. The times available are shown across the top.</p>
+    <p>You can drag the calendar left and right to move through the days.</p>
+    <p>To move further through the calendar, click "Next week" or "Next month" at the top right.</p>
+    <p>Look for an empty slot in the room you wish to book.</p>
+    <p>Click the mouse at the starting time for your booking, drag to the end time, and release the mouse.</p>
+    <p>Rooms can only be booked in half-hour increments.</p>
+    <p>Give your booking a title and description. If you don't do this, staff will not know what the booking is for and may reject it.</p>
+    <p>Click "Save".</p>
+<h2>Confirmation</h2>
+    <p>Your booking will be sent to Centre Staff for approval. You will receive an email once the booking is approved or rejected.</p>
+<h2>Payment</h2>
+<p>Payment for room bookings can be done in person at the Centre or via Paypal.</p>
+    <p>You will receive a link to the THCC paypal account in the approval email.</p>
+
+{% endblock main %}
