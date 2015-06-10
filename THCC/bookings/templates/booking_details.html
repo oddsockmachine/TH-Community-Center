@@ -43,7 +43,7 @@ function del(bookingID) {
     <p>{{ booking.desc|linebreaks }}</p>
 <!--     <input class="btn btn-danger" type="submit" value="Delete this booking" onclick="del('{{booking.id}}')"> -->
     {% if booking.user = request.user %}
-    <button class="btn btn-danger" type="submit" value="Delete this booking" onclick="location.href='/bookings/delete/{{booking.id}}'" formmethod="GET">Delete this booking</button>
+    <button class="btn btn-danger" type="submit" value="Delete this booking" onclick="if(confirm('Are you sure you want to delete this booking?'))window.location.href='/bookings/delete/{{booking.id}}'" formmethod="GET">Delete this booking</button>
     {% endif %}
 
 </div>

@@ -13,7 +13,7 @@
 * change bookings/list to bookings/upcoming and only show events in future, not all - DONE
 * allow deleting bookings - DONE
 * check if correct user when deleting - DONE
-* ask for confirmation when deleting
+* ask for confirmation when deleting - DONE
 * editing bookings (might have to re-enable moving blocks around in calendar widget)
 * block bookings
 * install postgresql

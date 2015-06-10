@@ -38,7 +38,6 @@ def booking_mine(request):
     return render(request, "mine.html", {'bookings': bookings_for_user})
 
 def howto(request):     
-    bookings_for_user = Booking.objects.filter(user=request.user)
     return render(request, "howto.html")
 
 @login_required
