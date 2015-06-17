@@ -5,14 +5,11 @@
 {% block meta_title %}{% trans "Upcoming Events" %}{% endblock %}
 {% block title %}{% trans "Upcoming Events" %}{% endblock %}
 
-{% block breadcrumb_menu %}
-<li class="active">{% trans "Home.Bookings" %}</li>
-{% endblock %}
-
 {% block main %}
+<h4>All upcoming public events are shown here. For more information about a particular event, please contact the organiser</h4>
             {% for booking in bookings %}
                 <div class="post">
-                    <h1><a href="{% url 'booking_detail' pk=booking.pk %}">{{ booking.title }}</a></h1>
+                    <h1><a href="{% url 'booking_detail' pk=booking.pk %}">{{ booking.title }}</a> with {{booking.user}}</h1>
                     <div class="date">
                         {{ booking.start_date }}
                     </div>
