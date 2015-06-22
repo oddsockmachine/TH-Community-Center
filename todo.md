@@ -16,7 +16,7 @@
 - [x] ask for confirmation when deleting - DONE
 - [ ] editing bookings (might have to re-enable moving blocks around in calendar widget)
 - [ ] block bookings - basics done, need to consider more complex use cases
-- [ ] install postgresql for production and to enable migrations
+- [x] install postgresql for production and to enable migrations - done :)
 - [ ] public/private events. upcoming events should only show public. Extra tickbox in booking add form
 - [ ] prettify add form and disable editing of date fields and posting if incomplete (currently this is checked after posted, and an error message is given)
 - [x] calendar link should lead to booking tutorial/guide

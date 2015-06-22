@@ -26,6 +26,10 @@ class Booking(models.Model):
     room = models.CharField(null=False, max_length=100, choices=ROOM_CHOICES)
     # Has this booking been approved by an admin
     approved = models.BooleanField(default=False, editable=True)
+    # Will the booking appear in Public Events
+    public = models.BooleanField(default=False, editable=True)
+    # Is this part of a block booking
+    block_booking = models.IntegerField(default=0)
     
 #     class Meta:
 #         abstract = True
