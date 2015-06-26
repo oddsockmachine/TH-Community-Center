@@ -25,18 +25,18 @@
     <div class="col-md-4">
         <p><label for="id_room">Room:</label> <input id="id_room" maxlength="200" name="room" type="text" /></p>
     </div>
+    <div class="col-md-4">
+      <p><label for="id_public">Show event in <a href="/bookings/upcoming">Public Events</a> list?: </label> <select id="id_public" name="public">
+  <option value="True">Yes</option>
+  <option value="False" selected>No</option>
+</select></p>
+    </div>
       <div class="col-md-4">
 <p><label for="id_repeat">Repeat:</label> <select id="id_repeat" name="repeat">
   <option value="once" selected>Once</option>
   <option value="10times">10 times</option>
 </select></p>
     </div>
-<!--     <div class="col-md-4">
-<p><label for="id_privacy">Show event in <a href="/bookings/upcoming">Public Events</a> list?: </label><select id="id_privacy" name="privacy">
-  <option value="yes">Yes</option>
-  <option value="no" selected>No</option>
-</select></p>
-    </div> -->
   </div>
   <div class="row">
     <div class="col-md-4">

@@ -58,7 +58,6 @@ def booking_calendar(request):
 def booking_submit(request):
     if request.method == "POST":
         form = BookingForm(request.POST)
-        print "posting"
         if not request.user.is_authenticated():
             return render(request, "booking_submitted.html", {"success":False})
         if form.is_valid():
@@ -75,6 +74,7 @@ def booking_submit(request):
                 return render(request, "booking_submitted.html", {"success":False})    
             print "no conflicts"
             booking.save()
+            # block bookings - adds copies of the booking for x number of weeks. TODO conflict res
             if request.POST['repeat'] == "10times":
                 print "block booking"
                 for i in range(1,10):
@@ -91,7 +91,7 @@ def booking_submit(request):
 
 # 
 def booking_upcoming(request):
-    bookings = Booking.objects.filter(start_date__gte=datetime.now()).filter(approved=True)
+    bookings = Booking.objects.filter(start_date__gte=datetime.now()).filter(approved=True).filter(public=True)
     return render(request, "booking_upcoming.html", {'bookings': bookings})
 
 def booking_detail(request, pk):

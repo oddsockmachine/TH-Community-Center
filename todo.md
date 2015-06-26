@@ -5,23 +5,22 @@
 - [x] make sure booking is in half hour slots - DONE, once editing disabled
 - [x] thank user for submitting booking, confirmation sent to user.email - DONE
 - [x] move to different days/weeks/months/today in calendar - perhaps different views - DONE
+- [x] user sign up - DONE
 - [x] prevent overlapping bookings - DONE
 - [x] approvals page - allow admins to approve bookings without going into admin interface - Needs prettier template, but logic DONE
-- [x] user sign up - DONE
-- [x] bookings/mine needs login check - error at: bookings_for_user = Booking.objects.filter(user=request.user) - DONE
 - [x] /bookings/mine - show all bookings for user - Needs prettier template, but logic DONE
+- [x] bookings/mine needs login check - error at: bookings_for_user = Booking.objects.filter(user=request.user) - DONE
 - [x] change bookings/list to bookings/upcoming and only show events in future, not all - DONE
 - [x] allow deleting bookings - DONE
 - [x] check if correct user when deleting - DONE
 - [x] ask for confirmation when deleting - DONE
-- [ ] editing bookings (might have to re-enable moving blocks around in calendar widget)
-- [ ] block bookings - basics done, need to consider more complex use cases
-- [x] install postgresql for production and to enable migrations - done :)
-- [ ] public/private events. upcoming events should only show public. Extra tickbox in booking add form
-- [ ] prettify add form and disable editing of date fields and posting if incomplete (currently this is checked after posted, and an error message is given)
 - [x] calendar link should lead to booking tutorial/guide
+- [x] install postgresql for production and to enable migrations
+- [x] upcoming events page. Should only show public. Extra select box in booking add form
+- [ ] block bookings - basics done, need to consider more complex use cases
+- [ ] editing bookings (might have to re-enable moving blocks around in calendar widget)
+- [ ] prettify add form and disable editing of date fields and posting if incomplete (currently this is checked after posted, and an error message is given)
 - [ ] ask more information when signing up - what group they represent etc
-- [ ] see if can show time on vertical and rooms on horizontal axis for more space - probably not with this widget
 - [ ] actually send confirmation to user email- see: https://groups.google.com/forum/#!topic/mezzanine-users/D0OoaALImx
 - [ ] make contact form work
 - [ ] return non-generic error message when booking submit fails
