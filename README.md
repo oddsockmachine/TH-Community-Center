@@ -1,4 +1,4 @@
-Website for Tang Hall Community Centre, with a booking system. Preview it on the web: http://mellotron-209219.euw1.nitrousbox.com:8080/
+Website for Tang Hall Community Centre, with a booking system. Preview it on the web: http://thcc-107330.nitrousapp.com:3000/
 
 Current features:
 

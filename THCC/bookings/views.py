@@ -1,3 +1,4 @@
+import uuid
 from datetime import datetime, timedelta
 from django.shortcuts import render, get_object_or_404, redirect
 from models import Booking
@@ -77,11 +78,13 @@ def booking_submit(request):
             # block bookings - adds copies of the booking for x number of weeks. TODO conflict res
             if request.POST['repeat'] == "10times":
                 print "block booking"
+                block_id = uuid.uuid4().int
                 for i in range(1,10):
                     form = BookingForm(request.POST)
                     booking = form.save(commit=False)
                     booking.user = request.user
                     booking.start_date += timedelta(days=7*i)
+                    booking.block_booking = block_id 
                     booking.save()
             print booking
             return render(request, "booking_submitted.html", {"success":True})
