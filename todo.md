@@ -19,6 +19,7 @@
 - [x] upcoming events page. Should only show public. Extra select box in booking add form
 - [ ] block bookings - basics done, need to consider more complex use cases
 - [ ] editing bookings (might have to re-enable moving blocks around in calendar widget)
+- [ ] allow deleting bookings in /mine
 - [ ] prettify add form and disable editing of date fields and posting if incomplete (currently this is checked after posted, and an error message is given)
 - [ ] ask more information when signing up - what group they represent etc
 - [ ] actually send confirmation to user email- see: https://groups.google.com/forum/#!topic/mezzanine-users/D0OoaALImx

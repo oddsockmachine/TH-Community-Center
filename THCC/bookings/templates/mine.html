@@ -8,8 +8,11 @@
             {% for booking in bookings %}
                 <div class="post">
                     <h1><a href="{% url 'booking_detail' pk=booking.pk %}">{{ booking.title }}</a></h1>
-                    {% if not booking.approved %} <!-- TODO make this red -->
-                    <p>Awaiting approval</p>
+                    {% if not booking.approved %}
+                    <p style="color:red">Awaiting approval</p>
+                    {% endif %}
+                    {% if not booking.block_booking == "0" %}
+                    <p>Part of a block booking</p>
                     {% endif %}
                     <div class="date">
                         {{ booking.start_date }}
